@@ -1,0 +1,58 @@
+import axios from "axios";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+const LogInPage = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+
+  function handleLogIn(e) {
+    e.preventDefault();
+
+    async function tryToLogIn() {
+      try {
+        const { data } = await axios.get(
+          `http://localhost:5005/users?name=${name}&email=${email}`
+        );
+        if (data[0] === undefined) {
+          if (confirm("Sorry, can't find you! Would you like to Sing Up?")) {
+            navigate("/signup"); //if press OK
+          } else {
+            window.location.reload(); //if press Cancel, just reload the page
+          }
+        } else {
+          navigate("/profile");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    tryToLogIn();
+  }
+
+  return (
+    <div className="log-in-page">
+      <h1>Welcome back to Write your own story</h1>
+      <form>
+        <label>Name</label>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <label>Email</label>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <br />
+
+        <button onClick={handleLogIn}>Log In</button>
+      </form>
+    </div>
+  );
+};
+
+export default LogInPage;
