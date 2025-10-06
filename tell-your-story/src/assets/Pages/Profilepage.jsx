@@ -3,13 +3,13 @@ import axios from "axios";
 import { useEffect } from "react";
 
 const Profilepage = () => {
-  const { daysstate, setDaysstate } = useState();
+  const [daysState, setDaysState] = useState([]);
   useEffect(() => {
     async function getAllDiary() {
       try {
         const { data } = await axios("http://localhost:5005/days");
         console.log(data);
-        setDaysstate(data);
+        setDaysState(data);
       } catch (err) {
         console.log(err);
       }
@@ -19,10 +19,10 @@ const Profilepage = () => {
   return (
     <div>
       <p>this is profile page</p>
-      {daysstate.map((oneday) => {
+      {daysState.map((oneday) => {
         return (
-          <div>
-            <H3> oneday.date</H3>
+          <div key={oneday.id}>
+            <h3> {oneday.date}</h3>
           </div>
         );
       })}
