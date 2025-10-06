@@ -1,28 +1,50 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-const { daysstate, setDaysstate } = useState();
 const Profilepage = () => {
+  const { userID } = useParams();
+
+  const [daysState, setDaysState] = useState([]);
+  const [userState, setuserState] = useState([]);
+
   useEffect(() => {
     async function getAllDiary() {
       try {
-        const { data } = await axios("http://localhost:5005/days");
-        console.log(data);
-        setDaysstate(data);
+        const { data } = await axios(
+          `http://localhost:5005/days?userId=${userID}`
+        );
+
+        setDaysState(data);
       } catch (err) {
         console.log(err);
       }
     }
     getAllDiary();
-  }, []);
+  }, [userID]);
+
+  useEffect(() => {
+    async function getUsername() {
+      try {
+        const { data } = await axios.get(
+          `http://localhost:5005/users?id=${userID}`
+        );
+        setuserState(data[0]);
+        console.log(data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    getUsername();
+  }, [userID]);
   return (
     <div>
-      <p>this is profile page</p>
-      {daysstate.map((oneday) => {
+      <p>Good to see you, {userState.name}</p>
+      {daysState.map((oneday) => {
         return (
-          <div>
-            <H3> oneday.date</H3>
+          <div key={oneday.id}>
+            <h3> {oneday.date}</h3>
           </div>
         );
       })}
