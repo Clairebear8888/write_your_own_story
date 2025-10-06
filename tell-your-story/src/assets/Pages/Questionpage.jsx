@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const Questionpage = () => {
+  useEffect(() => {}, []);
+
   return <div></div>;
 };
 

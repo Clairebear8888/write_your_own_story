@@ -4,15 +4,6 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 const Profilepage = () => {
-<<<<<<< HEAD
-<<<<<<< HEAD
-  const [daysState, setDaysState] = useState([]);
-  useEffect(() => {
-    async function getAllDiary() {
-      try {
-        const { data } = await axios("http://localhost:5005/days");
-        console.log(data);
-=======
   const { userID } = useParams();
 
   const [daysState, setDaysState] = useState([]);
@@ -21,24 +12,10 @@ const Profilepage = () => {
   useEffect(() => {
     async function getAllDiary() {
       try {
-=======
-  const { userID } = useParams();
-
-  const [daysState, setDaysState] = useState([]);
-  const [userState, setuserState] = useState([]);
-
-  useEffect(() => {
-    async function getAllDiary() {
-      try {
->>>>>>> claireBranch
         const { data } = await axios(
           `http://localhost:5005/days?userId=${userID}`
         );
 
-<<<<<<< HEAD
->>>>>>> claireBranch
-=======
->>>>>>> claireBranch
         setDaysState(data);
       } catch (err) {
         console.log(err);
@@ -63,15 +40,7 @@ const Profilepage = () => {
   }, [userID]);
   return (
     <div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <p>this is profile page</p>
-=======
       <p>Good to see you, {userState.name}</p>
->>>>>>> claireBranch
-=======
-      <p>Good to see you, {userState.name}</p>
->>>>>>> claireBranch
       {daysState.map((oneday) => {
         return (
           <div key={oneday.id}>
