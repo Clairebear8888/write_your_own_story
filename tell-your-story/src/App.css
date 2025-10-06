@@ -1,3 +1,67 @@
+body {
+  color: #493027;
+  padding: 0;
+  margin: 0;
+  background-color: #fff5e5;
+}
+
+.web-site {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+/** Navbar **/
+.header-image-container img {
+  width: 50%;
+}
+
+header {
+  background-color: #fff5e5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header img {
+  width: 10%;
+}
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 20px;
+  height: 100%;
+}
+
+nav a {
+  width: 10rem;
+  text-align: center;
+  text-decoration: none;
+  color: #493027;
+  border: 1px solid #fba93a;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+}
+
+nav a.selected {
+  background-color: #fba93a;
+}
+
+/* Footer */
+footer {
+  background-color: #493027;
+  color: #fff5e5;
+  text-align: center;
+  height: 10vh;
+  padding-top: 3%;
+}
+
+/** Home Page **/
+
 .header-image-container {
   display: flex;
   justify-content: space-between;
@@ -22,13 +86,60 @@ h2 {
 .btn-container button {
   width: 10em;
   margin-right: 20px;
+  padding: 10px;
+  border: 1px solid #493027;
+  border-radius: 5px;
 }
 
 #sign-up-btn {
-  background-color: black;
-  color: white;
+  background-color: #493027;
+  color: #fff5e5;
+}
+#log-in-btn {
+  background-color: #fff5e5;
 }
 
-.header-image-container img {
-  width: 50%;
+#sign-up-btn:hover,
+#log-in-btn:hover {
+  background-color: #fba93a;
+  color: #493027;
+}
+
+/** Log In Page **/
+
+.log-in-page {
+  text-align: center;
+  height: 100%;
+}
+
+.log-in-page h1 {
+  padding: 2rem;
+}
+
+.log-in-page form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.log-in-page .inputs {
+  padding: 20px;
+  min-width: 30%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.log-in-page button {
+  background-color: #493027;
+  color: #fff5e5;
+  width: 10em;
+  margin-right: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 20px;
+}
+
+input {
+  width: 15rem;
+  margin: 20px;
 }

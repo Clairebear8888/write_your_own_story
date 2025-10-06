@@ -1,14 +1,34 @@
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
+import LogoImg from "../logo.png";
 
 const Navbar = () => {
   return (
-    <div>
+    <header>
+      <Link to="/">
+        <img alt="logo" src={LogoImg} />
+      </Link>
       <nav>
-        <button>Sign up</button>
-        <button>Log in </button>
-        <button>About us </button>
+        <NavLink
+          to="/signup"
+          className={({ isActive }) => (isActive ? "selected" : "")}
+        >
+          Sign up
+        </NavLink>
+        <NavLink
+          to="/login"
+          className={({ isActive }) => (isActive ? "selected" : "")}
+        >
+          Log in{" "}
+        </NavLink>
+        <NavLink
+          to="/about-us"
+          className={({ isActive }) => (isActive ? "selected" : "")}
+        >
+          About us{" "}
+        </NavLink>
       </nav>
-    </div>
+    </header>
   );
 };
 

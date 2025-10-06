@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 const Homepage = () => {
   return (
     <div>
-      <Navbar />
       <div className="header-image-container">
         <section>
           <h2>Write your own story </h2>
