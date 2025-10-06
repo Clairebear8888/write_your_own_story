@@ -78,14 +78,6 @@ const Questionpage = () => {
     }
   };
 
-  // //function show previous question
-  // const handlePrevQuestion = (e) => {
-  //   if (currentQuestionIndex > 0) {
-  //     setQuestion(question[currentQuestionIndex - 1]);
-  //     setcurrentQuestionIndex(currentQuestionIndex - 1);
-  //   }
-  // };
-
   if (!question || question.length === 0) {
     return <p>loading ...</p>;
   }
@@ -108,13 +100,6 @@ const Questionpage = () => {
       ></input>
 
       <button onClick={handleNextQuestion}>Next Question</button>
-
-      {/* <button
-          onClick={handlePrevQuestion}
-          disabled={currentQuestionIndex === 0}
-        >
-          Previous Question
-        </button> */}
     </div>
   );
 };

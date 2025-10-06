@@ -12,7 +12,7 @@ body {
   height: 100vh;
 }
 
-/** Navbar **/
+/************************** Navbar **************************/
 .header-image-container img {
   width: 50%;
 }
@@ -51,7 +51,7 @@ nav a.selected {
   background-color: #fba93a;
 }
 
-/* Footer */
+/************************** Footer **************************/
 footer {
   background-color: #493027;
   color: #fff5e5;
@@ -60,7 +60,7 @@ footer {
   padding-top: 3%;
 }
 
-/** Home Page **/
+/************************** Home Page **************************/
 
 .header-image-container {
   display: flex;
@@ -74,8 +74,7 @@ footer {
   justify-content: flex-start;
 }
 
-.header-image-container section h1,
-h2 {
+.header-image-container section h1 {
   font-size: 3rem;
 }
 
@@ -105,7 +104,7 @@ h2 {
   color: #493027;
 }
 
-/** Log In Page **/
+/************************** Log In Page **************************/
 
 .log-in-page {
   text-align: center;
@@ -142,4 +141,132 @@ h2 {
 input {
   width: 15rem;
   margin: 20px;
+}
+
+/************************** Sign Up Page **************************/
+
+.sign-up-page {
+  text-align: center;
+  height: 100%;
+}
+
+.sign-up-page h1 {
+  padding: 2rem;
+}
+
+.sign-up-page form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sign-up-page .inputs {
+  padding: 20px;
+  min-width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.sign-up-page .inputs input[type="checkbox"] {
+  padding: 0px;
+  text-align: left;
+}
+
+.sign-up-page button {
+  background-color: #493027;
+  color: #fff5e5;
+  width: 10em;
+  margin-right: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 20px;
+}
+
+input {
+  width: 15rem;
+  margin: 20px;
+}
+
+/************************** About Us Page **************************/
+.about-us-page {
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.about-us-page h1 {
+  padding: 2rem;
+}
+
+.about-us-page p {
+  width: 50vw;
+}
+
+.important {
+  color: #fba93a;
+  font-style: italic;
+}
+
+.about-team-content {
+  display: flex;
+}
+
+.about-team-content article {
+  width: 20vw;
+}
+
+.about-team-content img {
+  width: 100px;
+}
+
+#vera-img {
+  border-radius: 100px;
+}
+
+/***************** Admin Page ***********************/
+.admin-page {
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.admin-page h1 {
+  padding: 2rem;
+}
+
+.user-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.user-card {
+  width: 15vw;
+  border: 1px solid #493027;
+  border-radius: 10px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 20vh;
+}
+
+.admin-text {
+  color: #fba93a;
+  font-style: italic;
+}
+
+.user-card button {
+  width: 100%;
+  border-radius: 0px 0px 10px 10px;
+  border: none;
+  background-color: #493027;
+  color: #fff5e5;
+  min-height: 8vh;
 }

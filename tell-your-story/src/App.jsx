@@ -11,6 +11,7 @@ import AboutUsPage from "./assets/Pages/AboutUs";
 import Footer from "./assets/Components/Footer";
 import Navbar from "./assets/Components/Navbar";
 import DetailDairypage from "./assets/Pages/DetailDairypage";
+import AdminPage from "./assets/Pages/AdminPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/login" element={<LogInPage />} />
         <Route path="/about-us" element={<AboutUsPage />} />
         <Route path="/profile/:userID/:dairyID" element={<DetailDairypage />} />
+        <Route path="/admin" element={<AdminPage />} />
       </Routes>
       <Footer />
     </div>

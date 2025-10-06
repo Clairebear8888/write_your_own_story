@@ -15,14 +15,17 @@ const LogInPage = () => {
         const { data } = await axios.get(
           `http://localhost:5005/users?name=${name}&email=${email}`
         );
-        if (data[0] === undefined) {
+        const user = data[0];
+        if (user === undefined) {
           if (confirm("Sorry, can't find you! Would you like to Sing Up?")) {
             navigate("/signup"); //if press OK
           } else {
             window.location.reload(); //if press Cancel, just reload the page
           }
         } else {
-          navigate("/profile");
+          if (user.isAdmin)
+            navigate("/admin", { state: { loggedUserId: user.id } });
+          else navigate(`/profile/${user.id}`);
         }
       } catch (error) {
         console.log(error);
