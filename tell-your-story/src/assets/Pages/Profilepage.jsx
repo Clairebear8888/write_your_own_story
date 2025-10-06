@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 
 const Profilepage = () => {
 <<<<<<< HEAD
+<<<<<<< HEAD
   const [daysState, setDaysState] = useState([]);
   useEffect(() => {
     async function getAllDiary() {
@@ -20,10 +21,23 @@ const Profilepage = () => {
   useEffect(() => {
     async function getAllDiary() {
       try {
+=======
+  const { userID } = useParams();
+
+  const [daysState, setDaysState] = useState([]);
+  const [userState, setuserState] = useState([]);
+
+  useEffect(() => {
+    async function getAllDiary() {
+      try {
+>>>>>>> claireBranch
         const { data } = await axios(
           `http://localhost:5005/days?userId=${userID}`
         );
 
+<<<<<<< HEAD
+>>>>>>> claireBranch
+=======
 >>>>>>> claireBranch
         setDaysState(data);
       } catch (err) {
@@ -50,7 +64,11 @@ const Profilepage = () => {
   return (
     <div>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <p>this is profile page</p>
+=======
+      <p>Good to see you, {userState.name}</p>
+>>>>>>> claireBranch
 =======
       <p>Good to see you, {userState.name}</p>
 >>>>>>> claireBranch
