@@ -8,8 +8,8 @@ const Homepage = () => {
     <div>
       <div className="header-image-container">
         <section>
-          <h2>Write your own story </h2>
-          <h3>Record your day and access your inner self </h3>
+          <h1>Write your own story </h1>
+          <h2>Record your day and access your inner self </h2>
           <div className="btn-container">
             <Link to="/signup">
               <button id="sign-up-btn">Sign Up</button>
