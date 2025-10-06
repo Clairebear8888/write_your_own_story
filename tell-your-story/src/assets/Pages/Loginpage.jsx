@@ -23,7 +23,9 @@ const LogInPage = () => {
             window.location.reload(); //if press Cancel, just reload the page
           }
         } else {
-          navigate(`/profile/${user.id}`);
+          if (user.isAdmin)
+            navigate("/admin", { state: { loggedUserId: user.id } });
+          else navigate(`/profile/${user.id}`);
         }
       } catch (error) {
         console.log(error);
