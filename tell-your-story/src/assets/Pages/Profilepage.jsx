@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 const Profilepage = () => {
   const { userID } = useParams();
 
@@ -31,7 +31,6 @@ const Profilepage = () => {
           `http://localhost:5005/users?id=${userID}`
         );
         setuserState(data[0]);
-        console.log(data);
       } catch (err) {
         console.log(err);
       }
@@ -44,7 +43,9 @@ const Profilepage = () => {
       {daysState.map((oneday) => {
         return (
           <div key={oneday.id}>
-            <h3> {oneday.date}</h3>
+            <Link to={`/profile/${userID}/${oneday.date}`}>
+              <button> {oneday.date}</button>
+            </Link>
           </div>
         );
       })}
