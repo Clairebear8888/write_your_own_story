@@ -1,6 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { GoogleGenAI } from "@google/genai";
+
+const ai = new GoogleGenAI({
+  apiKey: import.meta.env.VITE_GEMINI_API_KEY,
+});
 
 const Questionpage = () => {
   const [answers, setAnswers] = useState({});
@@ -10,6 +15,8 @@ const Questionpage = () => {
     const today = new Date();
     return `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
   });
+
+  const [response, setResponse] = useState("");
 
   const { userID } = useParams();
   const nav = useNavigate();
@@ -60,7 +67,6 @@ const Questionpage = () => {
         "http://localhost:5005/days",
         dataToSubmit
       );
-      nav(`/profile/${userID}`);
     } catch (err) {
       console.log(err);
     }
@@ -69,14 +75,20 @@ const Questionpage = () => {
   //function show next question
 
   const handleNextQuestion = () => {
-    if (currentQuestionIndex < question.length - 1) {
-      setcurrentQuestionIndex(currentQuestionIndex + 1);
-    } else {
-      alert("Well done for the day");
-      console.log("All answers:", answers);
-      submitData();
-    }
+    setcurrentQuestionIndex(currentQuestionIndex + 1);
   };
+
+  const handlelastQuestion = async () => {
+    alert("Well done for the day");
+    console.log("All answers:", answers);
+
+    await handleSubmit();
+    await submitData();
+  };
+
+  function handleBacktoProfile() {
+    nav(`/profile/${userID}`);
+  }
 
   if (!question || question.length === 0) {
     return <p>loading ...</p>;
@@ -86,6 +98,79 @@ const Questionpage = () => {
     return <p>current queestion loading</p>;
   }
 
+  // ********************AI component here*****************************************************
+  const SYSTEM_PROMPT = `You are a kind growth coach who helps people reflect and grow.
+The user will give answers to these questions:
+1. How am I feeling right now?
+2. How does my body feel?
+3. What might have shaped these feelings today?
+4. What was the toughest part of my day?
+5. What was the best moment of my day?
+6. How did that moment make me feel?
+7. What can I thank myself for today?
+8. Any extra thoughts I want to note?   Respond kindly, validate feelings, offer short encouraging suggestions and one practical reflection prompt`;
+
+  // Syntax for open ai
+  // async function getGPTResponse(prompt) {
+  //   // const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
+  //   const apiKey =
+  //     "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";
+
+  //   try {
+  //     const { data } = await axios.post(
+  //       "https://api.openai.com/v1/chat/completions",
+  //       {
+  //         model: "gpt-3.5-turbo",
+  //         messages: [
+  //           { role: "system", content: SYSTEM_PROMPT },
+  //           { role: "user", content: prompt },
+  //         ],
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${apiKey}`,
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     );
+  //     return data.choices[0].message.content;
+
+  //     console.log("this is inside data", data.choices[0].message.content);
+  //   } catch (err) {
+  //     console.log("Error from openAI", err);
+  //     return "Sorry I couldn't generate a responce right now";
+  //   }
+  // }
+
+  async function getGPTResponse(prompt) {
+    try {
+      const response = await ai.models.generateContent({
+        model: "gemini-2.5-flash",
+        contents: [
+          {
+            role: "user",
+            parts: [
+              { text: `${SYSTEM_PROMPT} User's diary entries: + ${prompt}` },
+            ],
+          },
+        ],
+      });
+      console.log("Full response:", response);
+
+      const text = response.text;
+      return text;
+    } catch (err) {
+      console.log("error from Gemini", err);
+    }
+  }
+
+  async function handleSubmit() {
+    const userPrompt = JSON.stringify(formateData());
+    const reply = await getGPTResponse(userPrompt);
+    setResponse(reply);
+  }
+
+  //*****************end of Ai+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
   return (
     <div>
       <h2>Today is {currentDate}</h2>
@@ -99,7 +184,19 @@ const Questionpage = () => {
         placeholder="Type your answer"
       ></input>
 
-      <button onClick={handleNextQuestion}>Next Question</button>
+      {response && (
+        <div>
+          <h3>Your Reflection:</h3>
+          <p>{response}</p>
+        </div>
+      )}
+      {currentQuestionIndex === question.length - 1 ? (
+        <button onClick={handlelastQuestion}> Save </button>
+      ) : (
+        <button onClick={handleNextQuestion}>Next Question</button>
+      )}
+
+      <button onClick={handleBacktoProfile}> Back to profile </button>
     </div>
   );
 };
