@@ -18,6 +18,17 @@ function AdminPage() {
     getAllUsers();
   }, []);
 
+  async function handleDeleteUser(userId) {
+    try {
+      const { data } = await axios.delete(
+        `http://localhost:5005/users/${userId}`
+      );
+      setUsers(users.filter(user => user.id !== userId));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   if (!users) return <div>Loading....</div>;
 
   return (
@@ -30,7 +41,7 @@ function AdminPage() {
               <h3>{user.name}</h3>
               <p>{user.email}</p>
               {user.isAdmin && <p className="admin-text">Admin</p>}
-              <button>Delete</button>
+              <button onClick={() => handleDeleteUser(user.id)}>Delete</button>
             </div>
           );
         })}

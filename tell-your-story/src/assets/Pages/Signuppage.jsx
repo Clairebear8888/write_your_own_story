@@ -23,7 +23,9 @@ const Signuppage = () => {
           "http://localhost:5005/users",
           newUser
         );
-        navigate("/Profile");
+        if (newUser.isAdmin)
+          navigate("/admin", { state: { loggedUserId: data.id } });
+        else navigate(`/profile/${data.id}`);
       } catch (error) {
         console.log(error);
       }
