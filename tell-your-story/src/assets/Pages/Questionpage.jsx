@@ -40,7 +40,7 @@ const Questionpage = () => {
   };
 
   //Change the format of the date to submit
-  function formateData() {
+  function formateData(AIresponce) {
     const notes = Object.keys(answers).map((oneAnswer) => {
       return {
         diary_promptsId: question[oneAnswer].id,
@@ -52,15 +52,15 @@ const Questionpage = () => {
       date: currentDate,
       userId: parseInt(userID),
       notes: notes,
+      AIparagraph: AIresponce,
     };
     return finalData;
   }
 
   // Function to submit
 
-  async function submitData(e) {
-    const dataToSubmit = formateData();
-    console.log("data to submit", dataToSubmit);
+  async function submitData(AIresponce) {
+    const dataToSubmit = formateData(AIresponce);
 
     try {
       const { data } = await axios.post(
@@ -82,8 +82,9 @@ const Questionpage = () => {
     alert("Well done for the day");
     console.log("All answers:", answers);
 
-    await handleSubmit();
-    await submitData();
+    const AIresponce = await handleSubmit(); //AI
+
+    await submitData(AIresponce); //save data to DB
   };
 
   function handleBacktoProfile() {
@@ -155,7 +156,6 @@ The user will give answers to these questions:
           },
         ],
       });
-      console.log("Full response:", response);
 
       const text = response.text;
       return text;
@@ -168,6 +168,7 @@ The user will give answers to these questions:
     const userPrompt = JSON.stringify(formateData());
     const reply = await getGPTResponse(userPrompt);
     setResponse(reply);
+    return reply;
   }
 
   //*****************end of Ai+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
@@ -177,26 +178,34 @@ The user will give answers to these questions:
       <h2>Question {currentQuestionIndex + 1} </h2>
       <h4>{question[currentQuestionIndex].title} </h4>
 
-      <input
-        type="text"
-        value={answers[currentQuestionIndex] || ""}
-        onChange={handleStoreAnswer}
-        placeholder="Type your answer"
-      ></input>
-
-      {response && (
-        <div>
-          <h3>Your Reflection:</h3>
-          <p>{response}</p>
-        </div>
-      )}
-      {currentQuestionIndex === question.length - 1 ? (
-        <button onClick={handlelastQuestion}> Save </button>
-      ) : (
-        <button onClick={handleNextQuestion}>Next Question</button>
-      )}
-
-      <button onClick={handleBacktoProfile}> Back to profile </button>
+        <textarea
+          rows="4"
+          cols="50"
+          type="text"
+          value={answers[currentQuestionIndex] || ""}
+          onChange={handleStoreAnswer}
+          placeholder="Type your answer"
+        ></textarea>
+        <br />
+        {response && (
+          <div>
+            <h3>Your Reflection:</h3>
+            <p>{response}</p>
+          </div>
+        )}
+        {currentQuestionIndex === question.length - 1 ? (
+          <button className="prominent-btn" onClick={handlelastQuestion}>
+            Save
+          </button>
+        ) : (
+          <button className="prominent-btn" onClick={handleNextQuestion}>
+            Next Question →
+          </button>
+        )}
+        <button className="not-so-prominent-btn" onClick={handleBacktoProfile}>
+          Back to profile
+        </button>
+      </div>
     </div>
   );
 };

@@ -364,6 +364,15 @@ input {
   text-align: left;
 }
 
+.ai-responce-container {
+  border: 1px solid #493027;
+  border-radius: 10px;
+  width: 50vw;
+  padding: 10px;
+  margin: 5px;
+  box-shadow: 3px 3px 3px #fba93a;
+}
+
 .prominent-btn {
   color: #493027;
   font-weight: 600;
@@ -431,7 +440,7 @@ input {
   border: 1px solid #fba93a;
   font-weight: 600;
   font-size: larger;
-
+  background-color: #fff5e5;
   border-radius: 10px;
   padding: 20px 40px;
   margin: 20px;
