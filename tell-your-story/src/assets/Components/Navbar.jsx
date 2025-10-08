@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import LogoImg from "../logo.png";
+import { AuthContext } from "../../Context/Authcontext";
 
 const Navbar = () => {
+  const theData = useContext(AuthContext);
+  console.log(theData);
+
   return (
     <header>
       <Link to="/">

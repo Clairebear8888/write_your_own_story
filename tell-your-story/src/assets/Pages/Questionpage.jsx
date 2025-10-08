@@ -172,31 +172,36 @@ The user will give answers to these questions:
 
   //*****************end of Ai+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
   return (
-    <div>
-      <h2>Today is {currentDate}</h2>
-      <h2>Question {currentQuestionIndex + 1} </h2>
-      <h4>{question[currentQuestionIndex].title} </h4>
+    <div className="question-page">
+      <h1>Today is {currentDate}</h1>
+      <div className="question-box">
+        <h2>Question {currentQuestionIndex + 1} </h2>
+        <h4>{question[currentQuestionIndex].title} </h4>
 
-      <input
-        type="text"
-        value={answers[currentQuestionIndex] || ""}
-        onChange={handleStoreAnswer}
-        placeholder="Type your answer"
-      ></input>
-
-      {response && (
-        <div>
-          <h3>Your Reflection:</h3>
-          <p>{response}</p>
-        </div>
-      )}
-      {currentQuestionIndex === question.length - 1 ? (
-        <button onClick={handlelastQuestion}> Save </button>
-      ) : (
-        <button onClick={handleNextQuestion}>Next Question</button>
-      )}
-
-      <button onClick={handleBacktoProfile}> Back to profile </button>
+        <textarea
+          rows="4"
+          cols="50"
+          type="text"
+          value={answers[currentQuestionIndex] || ""}
+          onChange={handleStoreAnswer}
+          placeholder="Type your answer"
+        ></textarea>
+        <br />
+        {response && (
+          <div>
+            <h3>Your Reflection:</h3>
+            <p>{response}</p>
+          </div>
+        )}
+        {currentQuestionIndex === question.length - 1 ? (
+          <button onClick={handlelastQuestion}> Save </button>
+        ) : (
+          <button className="prominent-btn" onClick={handleNextQuestion}>
+            Next Question →
+          </button>
+        )}
+        <button onClick={handleBacktoProfile}> Back to profile </button>
+      </div>
     </div>
   );
 };
