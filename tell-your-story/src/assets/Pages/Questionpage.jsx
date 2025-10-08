@@ -114,7 +114,7 @@ The user will give answers to these questions:
   // async function getGPTResponse(prompt) {
   //   // const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
   //   const apiKey =
-  //     "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";
+  //     "";
 
   //   try {
   //     const { data } = await axios.post(
