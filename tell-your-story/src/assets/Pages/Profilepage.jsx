@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+
 const Profilepage = () => {
   const { userID } = useParams();
 
@@ -15,9 +16,7 @@ const Profilepage = () => {
         const { data } = await axios(
           `http://localhost:5005/days?userId=${userID}`
         );
-
         setDaysState(data);
-        console.log("data", data);
       } catch (err) {
         console.log(err);
       }
@@ -38,18 +37,55 @@ const Profilepage = () => {
     }
     getUsername();
   }, [userID]);
+
+  async function handleDeleteDay(dayToRemoveId) {
+    console.log("deleting");
+    try {
+      const { data } = await axios.delete(
+        `http://localhost:5005/days/${dayToRemoveId}`
+      );
+      setDaysState(daysState.filter((day) => day.id !== dayToRemoveId));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
-    <div>
-      <p>Good to see you, {userState.name}</p>
-      {daysState.map((oneday) => {
-        return (
-          <div key={oneday.id}>
-            <Link to={`/profile/${userID}/${oneday.date}`}>
-              <button> {oneday.date}</button>
-            </Link>
-          </div>
-        );
-      })}
+    <div className="profile-page">
+      <h1>Good to see you, {userState.name}</h1>
+      <p>Here is Your Story so far.</p>
+      <button className="prominent-btn">
+        <Link to={`/questions/${userID}`}>＋ Journal Today!</Link>
+      </button>
+      <div className="day-container">
+        {daysState.map((oneday) => {
+          return (
+            <div className="day-card" key={oneday.id}>
+              <h2>{oneday.date}</h2>
+              <div className="actions-container">
+                <button>
+                  <Link to={`/profile/${userID}/${oneday.date}`}>
+                    See My Day
+                  </Link>
+                </button>
+
+                <button>
+                  <Link to={`/profile/${userID}/${oneday.date}/edit`}>
+                    Edit
+                  </Link>
+                </button>
+                <button
+                  onClick={() => {
+                    handleDeleteDay(oneday.id);
+                  }}
+                >
+                  Delete Day
+                </button>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

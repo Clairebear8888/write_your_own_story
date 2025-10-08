@@ -87,19 +87,25 @@ const Questionpage = () => {
   }
 
   return (
-    <div>
-      <h2>Today is {currentDate}</h2>
-      <h2>Question {currentQuestionIndex + 1} </h2>
-      <h4>{question[currentQuestionIndex].title} </h4>
+    <div className="question-page">
+      <h1>Today is {currentDate}</h1>
+      <div className="question-box">
+        <h2>Question {currentQuestionIndex + 1} </h2>
+        <h4>{question[currentQuestionIndex].title} </h4>
 
-      <input
-        type="text"
-        value={answers[currentQuestionIndex] || ""}
-        onChange={handleStoreAnswer}
-        placeholder="Type your answer"
-      ></input>
-
-      <button onClick={handleNextQuestion}>Next Question</button>
+        <textarea
+          rows="4"
+          cols="50"
+          type="text"
+          value={answers[currentQuestionIndex] || ""}
+          onChange={handleStoreAnswer}
+          placeholder="Type your answer"
+        ></textarea>
+        <br />
+        <button className="prominent-btn" onClick={handleNextQuestion}>
+          Next Question →
+        </button>
+      </div>
     </div>
   );
 };
