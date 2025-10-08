@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
+import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Context/Authcontext";
 
 const Profilepage = () => {
+  const { isLoggedIn, setisLoggedin, userName, setUserName } =
+    useContext(AuthContext);
   const { userID } = useParams();
 
   const [daysState, setDaysState] = useState([]);

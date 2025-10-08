@@ -1,8 +1,15 @@
 import axios from "axios";
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Context/Authcontext";
+import { useContext } from "react";
 
 const LogInPage = () => {
+  const { isLoggedIn, setisLoggedin, userName, setUserName } =
+    useContext(AuthContext);
+
+  console.log(userName);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
@@ -20,12 +27,18 @@ const LogInPage = () => {
           if (confirm("Sorry, can't find you! Would you like to Sing Up?")) {
             navigate("/signup"); //if press OK
           } else {
-            window.location.reload(); //if press Cancel, just reload the page
+            window.location.reload();
+            //if press Cancel, just reload the page
           }
         } else {
           if (user.isAdmin)
             navigate("/admin", { state: { loggedUserId: user.id } });
-          else navigate(`/profile/${user.id}`);
+          else {
+            navigate(`/profile/${user.id}`),
+              await setisLoggedin(true),
+              await setUserName(name);
+            console.log(name, isLoggedIn);
+          }
         }
       } catch (error) {
         console.log(error);
