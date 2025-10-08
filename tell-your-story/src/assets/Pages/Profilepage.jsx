@@ -56,7 +56,7 @@ const Profilepage = () => {
 
   return (
     <div className="profile-page">
-      <h1>Good to see you, {userState.name}</h1>
+      <h1>How has your day been, {userState.name}?</h1>
       <p>Here is Your Story so far.</p>
       <button className="prominent-btn">
         <Link to={`/questions/${userID}`}>＋ Journal Today!</Link>
@@ -67,23 +67,24 @@ const Profilepage = () => {
             <div className="day-card" key={oneday.id}>
               <h2>{oneday.date}</h2>
               <div className="actions-container">
-                <button>
+                <button id="main-button">
                   <Link to={`/profile/${userID}/${oneday.date}`}>
                     See My Day
                   </Link>
                 </button>
 
-                <button>
+                <button id="edit-button">
                   <Link to={`/profile/${userID}/${oneday.date}/edit`}>
                     Edit
                   </Link>
                 </button>
                 <button
+                  id="delete-button"
                   onClick={() => {
                     handleDeleteDay(oneday.id);
                   }}
                 >
-                  Delete Day
+                  Delete
                 </button>
               </div>
             </div>

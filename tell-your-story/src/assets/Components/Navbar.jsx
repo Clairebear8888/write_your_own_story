@@ -17,8 +17,9 @@ const Navbar = () => {
 
       {isLoggedIn === true ? (
         <nav>
-          <h4>Good to see you today, {userName}</h4>
+          <h4 className="nav-bar-h4">Good to see you today, {userName}</h4>
           <button
+            className="logout-button"
             onClick={() => {
               setIsLoggedIn(false);
             }}
