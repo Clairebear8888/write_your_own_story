@@ -19,6 +19,7 @@ const DetailDairypage = () => {
         setDiaryPrompts(result.data);
 
         setsingleDairyState(data[0]);
+        console.log("singleDairyState: ", data[0]);
       } catch (err) {
         console.log(err);
       }
@@ -42,6 +43,12 @@ const DetailDairypage = () => {
           </div>
         );
       })}
+      {singleDairyState.AIparagraph && (
+        <div className="ai-responce-container">
+          <h3>✨ AI opinion: ✨</h3>
+          <p>{singleDairyState.AIparagraph}</p>
+        </div>
+      )}
       <Link to={`/profile/${userID}`}>
         <button className="prominent-btn">Back</button>
       </Link>
