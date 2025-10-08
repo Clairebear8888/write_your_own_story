@@ -7,32 +7,44 @@ function AboutUsPage() {
       <h1>About Us Page</h1>
       <section className="about-app-content">
         <p>
-          At <span className="important">Create Your Own Story</span>, we
-          believe journaling is more than just writing — it’s an essential
-          practice for self-reflection and self-understanding. Taking a few
-          moments each day to check in with your thoughts and feelings can help
-          you grow, heal, and connect more deeply with yourself. But our app
-          goes a step further.
+          What if your <span className="important">dear dairy </span>can hear
+          you and talk back to you?
         </p>
+
         <p>
-          Beyond classic journaling, it invites you to turn your reflections
-          into a personal story — one that you can read from a fresh,
-          third-person perspective. This unique feature helps you see your
-          experiences in a new light, shift your point of view, and discover the
-          next steps you want to take on your journey. Your story is unfolding
-          every day — and here, you get to write it your way.
+          With <span className="important">Write Your Own Story</span>, you can
+          practice journaling just by taking a few moments each day to check in
+          with your thoughts and let this process help you you grow, heal, and
+          connect more deeply with yourself.
+        </p>
+
+        <p>
+          {" "}
+          If you read your story, you will be surprised have far you have
+          come...
         </p>
       </section>
-      <h2>Our Team</h2>
-      <section className="about-team-content">
-        <article>
-          <img alt="Claire" src={ClaireImg} />
-          <h3>Claire Liwen</h3>
-        </article>
-        <article>
-          <img alt="Vera" src={VeraImg} id="vera-img" />
-          <h3>Vera Fileyeva</h3>
-        </article>
+      <section>
+        <h2>Our Team</h2>
+        <a
+          href="https://www.linkedin.com/in/claire%EF%BC%88liwen-zhu-06715713/"
+          target="_blank"
+        >
+          <article>
+            <img alt="Claire" src={ClaireImg} />
+            <h3>Claire Liwen</h3>
+          </article>
+        </a>
+
+        <a
+          href=" https://www.linkedin.com/in/vera-veramei-5757b257/"
+          target="_blank"
+        >
+          <article>
+            <img alt="Vera" src={VeraImg} id="vera-img" />
+            <h3>Vera Fileyeva</h3>
+          </article>
+        </a>
       </section>
     </div>
   );
