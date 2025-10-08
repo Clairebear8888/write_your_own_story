@@ -4,7 +4,7 @@ import LogoImg from "../logo.png";
 import { AuthContext } from "../../Context/Authcontext";
 
 const Navbar = () => {
-  const { isLoggedIn, setisLoggedin, userName, setUserName } =
+  const { isLoggedIn, setIsLoggedIn, userName, setUserName } =
     useContext(AuthContext);
 
   console.log(isLoggedIn);
@@ -20,7 +20,7 @@ const Navbar = () => {
           <h4>Good to see you today, {userName}</h4>
           <button
             onClick={() => {
-              setisLoggedin(false);
+              setIsLoggedIn(false);
             }}
           >
             Logout
