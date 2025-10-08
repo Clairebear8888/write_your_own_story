@@ -173,38 +173,40 @@ The user will give answers to these questions:
 
   //*****************end of Ai+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
   return (
-    <div>
+    <div className="question-page">
       <h2>Today is {currentDate}</h2>
-      <h2>Question {currentQuestionIndex + 1} </h2>
-      <h4>{question[currentQuestionIndex].title} </h4>
+      <div className="question-box">
+        <h2>Question {currentQuestionIndex + 1} </h2>
+        <h4>{question[currentQuestionIndex].title} </h4>
 
-      <textarea
-        rows="4"
-        cols="50"
-        type="text"
-        value={answers[currentQuestionIndex] || ""}
-        onChange={handleStoreAnswer}
-        placeholder="Type your answer"
-      ></textarea>
-      <br />
-      {response && (
-        <div>
-          <h3>Your Reflection:</h3>
-          <p>{response}</p>
-        </div>
-      )}
-      {currentQuestionIndex === question.length - 1 ? (
-        <button className="prominent-btn" onClick={handlelastQuestion}>
-          Save
+        <textarea
+          rows="4"
+          cols="50"
+          type="text"
+          value={answers[currentQuestionIndex] || ""}
+          onChange={handleStoreAnswer}
+          placeholder="Type your answer"
+        ></textarea>
+        <br />
+        {response && (
+          <div>
+            <h3>Your Reflection:</h3>
+            <p>{response}</p>
+          </div>
+        )}
+        {currentQuestionIndex === question.length - 1 ? (
+          <button className="prominent-btn" onClick={handlelastQuestion}>
+            Save
+          </button>
+        ) : (
+          <button className="prominent-btn" onClick={handleNextQuestion}>
+            Next Question →
+          </button>
+        )}
+        <button className="not-so-prominent-btn" onClick={handleBacktoProfile}>
+          Back to profile
         </button>
-      ) : (
-        <button className="prominent-btn" onClick={handleNextQuestion}>
-          Next Question →
-        </button>
-      )}
-      <button className="not-so-prominent-btn" onClick={handleBacktoProfile}>
-        Back to profile
-      </button>
+      </div>
     </div>
   );
 };

@@ -196,6 +196,7 @@ input {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  overflow-y: scroll;
 }
 
 .about-us-page h1 {
@@ -235,6 +236,7 @@ input {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  overflow-y: scroll;
 }
 
 .admin-page h1 {
@@ -280,6 +282,7 @@ input {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  overflow-y: scroll;
 }
 
 .profile-page h1 {
