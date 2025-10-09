@@ -12,17 +12,17 @@ function AboutUsPage() {
         </p>
 
         <p>
-          With <span className="important">Write Your Own Story</span>, you can
-          practice journaling just by taking a few moments each day to check in
-          with your thoughts.
+          With <span className="important">Echo Dairy</span>, you can journal
+          each day to check in with your thoughts and listen what a kind voice
+          echoing back to you.
         </p>
 
         <p>
-          Let this process help you grow, heal, and connect more deeply with
+          Let this process help you grow, heal, and connect more deeply within
           yourself.
         </p>
         <p>
-          If you read your story, you will be surprised have far you have
+          If you read your story, you might be surprised have far you have
           come...
         </p>
       </section>
