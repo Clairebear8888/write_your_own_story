@@ -440,6 +440,10 @@ input {
 }
 
 .question-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 60vw;
   border: 1px solid #493027;
   margin: 20px;
@@ -450,6 +454,49 @@ input {
 
 .question-box textarea {
   margin: 20px;
+}
+
+/******** SPINNER **********/
+.spinner-container {
+  /* align children in the center */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+.buddha {
+  width: 50px;
+  z-index: 2;
+}
+.background,
+.spinner {
+  position: absolute;
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}
+
+.background {
+  border-radius: 50%;
+}
+
+.spinner {
+  border-radius: 50%;
+  border-top: 2px solid #eb5406;
+  box-shadow: 0 -5px 5px #eb520699;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /************** Edit Day Page ********************/

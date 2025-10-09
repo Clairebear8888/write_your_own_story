@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { GoogleGenAI } from "@google/genai";
 import { API_URL } from "../Components/config/config";
+import buddha from "../buddha-2.png";
 
 const ai = new GoogleGenAI({
   apiKey: import.meta.env.VITE_GEMINI_API_KEY,
@@ -229,18 +230,28 @@ The user will give answers to these questions:
       <div className="question-box">
         {!response && (
           <>
-            <h2>Question {currentQuestionIndex + 1} </h2>
-            <h4>{question[currentQuestionIndex].title} </h4>
-            <textarea
-              rows="4"
-              cols="50"
-              type="text"
-              value={answers[currentQuestionIndex] || ""}
-              onChange={handleStoreAnswer}
-              placeholder="Type your answer"
-            ></textarea>
+            {!spinner && (
+              <>
+                <h2>Question {currentQuestionIndex + 1} </h2>
+                <h4>{question[currentQuestionIndex].title} </h4>
+                <textarea
+                  rows="4"
+                  cols="50"
+                  type="text"
+                  value={answers[currentQuestionIndex] || ""}
+                  onChange={handleStoreAnswer}
+                  placeholder="Type your answer"
+                ></textarea>
+              </>
+            )}
             <br />
-            {spinner && <div>this is spinner loading </div>}
+            {spinner && (
+              <div class="spinner-container">
+                <span class="spinner"></span>
+                <span class="background"></span>
+                <img class="buddha" src={buddha} />
+              </div>
+            )}
           </>
         )}
 
@@ -250,28 +261,33 @@ The user will give answers to these questions:
             <p>{response}</p>
           </div>
         )}
-        {currentQuestionIndex < question.length - 1 ? ( //not the last question
-          <button className="prominent-btn" onClick={handleNextQuestion}>
-            Next Question →
-          </button>
-        ) : !response ? ( //the last question
-          <button className="prominent-btn" onClick={handlelastQuestion}>
-            Get response from Dear Diary
-          </button>
-        ) : (
-          //having Diary's response
+        <div>
+          {currentQuestionIndex < question.length - 1 ? ( //not the last question
+            <button className="prominent-btn" onClick={handleNextQuestion}>
+              Next Question →
+            </button>
+          ) : !response ? ( //the last question
+            <button className="prominent-btn" onClick={handlelastQuestion}>
+              Get response from Echo Diary
+            </button>
+          ) : (
+            //having Diary's response
+            <button
+              className="prominent-btn"
+              onClick={() => {
+                handleSaveTheDay(response);
+              }}
+            >
+              Save the day!
+            </button>
+          )}
           <button
-            className="prominent-btn"
-            onClick={() => {
-              handleSaveTheDay(response);
-            }}
+            className="not-so-prominent-btn"
+            onClick={handleBacktoProfile}
           >
-            Save the day!
+            Back to profile
           </button>
-        )}
-        <button className="not-so-prominent-btn" onClick={handleBacktoProfile}>
-          Back to profile
-        </button>
+        </div>
       </div>
     </div>
   );
