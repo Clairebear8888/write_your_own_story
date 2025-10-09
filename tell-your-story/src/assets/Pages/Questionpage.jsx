@@ -61,9 +61,7 @@ const Questionpage = () => {
   // Function to submit
 
   async function submitData(AIresponse) {
-    //async function submitData() {
     const dataToSubmit = formateData(AIresponse);
-
     try {
       const { data } = await axios.post(
         "http://localhost:5005/days",
@@ -84,14 +82,12 @@ const Questionpage = () => {
     alert("Well done for the day");
     console.log("All answers:", answers);
 
-    //const AIresponce = await handleSubmit(); //AI
     await handleSubmit(); //AI
-
-    //await submitData(AIresponce); //save data to DB
   };
 
   const handleSaveTheDay = async (AIresponse) => {
     await submitData(AIresponse); //save data to DB
+    nav(`/profile/${userID}`);
   };
 
   function handleBacktoProfile() {
