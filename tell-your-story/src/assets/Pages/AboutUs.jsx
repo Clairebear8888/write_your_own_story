@@ -7,7 +7,7 @@ function AboutUsPage() {
       <h1>About Us Page</h1>
       <section className="about-app-content">
         <p>
-          What if your <span className="important">dear dairy </span>can hear
+          What if your <span className="important">Dear dairy </span>can hear
           you and talk back to you?
         </p>
 
@@ -18,7 +18,7 @@ function AboutUsPage() {
         </p>
 
         <p>
-          let this process help you you grow, heal, and connect more deeply with
+          Let this process help you grow, heal, and connect more deeply with
           yourself.
         </p>
         <p>
