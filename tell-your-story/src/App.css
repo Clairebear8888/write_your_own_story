@@ -314,7 +314,7 @@ input {
 .day-container {
   display: flex;
   flex-wrap: wrap;
-  padding-bottom: 120px;
+  padding-bottom: 50px;
 }
 
 .day-card {
@@ -486,7 +486,6 @@ input {
 }
 
 footer {
-  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;

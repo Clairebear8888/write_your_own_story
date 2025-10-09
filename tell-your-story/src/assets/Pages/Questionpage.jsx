@@ -21,6 +21,8 @@ const Questionpage = () => {
   const { userID } = useParams();
   const nav = useNavigate();
 
+  const [spinner, setSpinner] = useState(false);
+
   useEffect(() => {
     async function getQuestions() {
       try {
@@ -166,9 +168,16 @@ The user will give answers to these questions:
 
   async function handleSubmit() {
     const userPrompt = JSON.stringify(formateData());
-    const reply = await getGPTResponse(userPrompt);
-    setResponse(reply);
-    return reply;
+
+    try {
+      setSpinner(true);
+      const reply = await getGPTResponse(userPrompt);
+      setResponse(reply);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setSpinner(false);
+    }
   }
 
   //*****************end of Ai+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
@@ -188,6 +197,8 @@ The user will give answers to these questions:
           placeholder="Type your answer"
         ></textarea>
         <br />
+
+        {spinner && <div>this is spinner loading </div>}
         {response && (
           <div>
             <h3>Your Reflection:</h3>

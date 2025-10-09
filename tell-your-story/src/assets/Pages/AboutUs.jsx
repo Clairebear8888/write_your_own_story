@@ -14,18 +14,20 @@ function AboutUsPage() {
         <p>
           With <span className="important">Write Your Own Story</span>, you can
           practice journaling just by taking a few moments each day to check in
-          with your thoughts and let this process help you you grow, heal, and
-          connect more deeply with yourself.
+          with your thoughts.
         </p>
 
         <p>
-          {" "}
+          let this process help you you grow, heal, and connect more deeply with
+          yourself.
+        </p>
+        <p>
           If you read your story, you will be surprised have far you have
           come...
         </p>
       </section>
-      <section>
-        <h2>Our Team</h2>
+      <h2>Our Team</h2>
+      <section className="about-team-content">
         <a
           href="https://www.linkedin.com/in/claire%EF%BC%88liwen-zhu-06715713/"
           target="_blank"
