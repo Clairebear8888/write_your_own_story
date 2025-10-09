@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/Authcontext";
 import { useContext } from "react";
+import { API_URL } from "../Components/config/config";
 
 const LogInPage = () => {
   const { isLoggedIn, setIsLoggedIn, userName, setUserName } =
@@ -20,7 +21,7 @@ const LogInPage = () => {
     async function tryToLogIn() {
       try {
         const { data } = await axios.get(
-          `http://localhost:5005/users?name=${name}&email=${email}`
+          `${API_URL}/users?name=${name}&email=${email}`
         );
         const user = data[0];
         if (user === undefined) {

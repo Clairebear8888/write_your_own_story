@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../Components/config/config";
 
 const Signuppage = () => {
   const [name, setName] = useState("");
@@ -19,10 +20,7 @@ const Signuppage = () => {
 
     async function addNewUser() {
       try {
-        const { data } = await axios.post(
-          "http://localhost:5005/users",
-          newUser
-        );
+        const { data } = await axios.post(`${API_URL}/users`, newUser);
         if (newUser.isAdmin)
           navigate("/admin", { state: { loggedUserId: data.id } });
         else navigate(`/profile/${data.id}`);

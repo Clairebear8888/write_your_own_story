@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { API_URL } from "../Components/config/config";
 
 function AdminPage() {
   const [users, setUsers] = useState(null);
@@ -10,7 +11,7 @@ function AdminPage() {
   useEffect(() => {
     async function getAllUsers() {
       const { data } = await axios.get(
-        `http://localhost:5005/users?id_ne=${loggedUserId}`
+        `${API_URL}/users?id_ne=${loggedUserId}`
       );
       setUsers(data);
     }
@@ -20,10 +21,8 @@ function AdminPage() {
 
   async function handleDeleteUser(userId) {
     try {
-      const { data } = await axios.delete(
-        `http://localhost:5005/users/${userId}`
-      );
-      setUsers(users.filter(user => user.id !== userId));
+      const { data } = await axios.delete(`${API_URL}/users/${userId}`);
+      setUsers(users.filter((user) => user.id !== userId));
     } catch (error) {
       console.log(error);
     }

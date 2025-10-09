@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { API_URL } from "../Components/config/config";
 
 const DetailDairypage = () => {
   const [singleDairyState, setsingleDairyState] = useState(null);
@@ -12,10 +13,10 @@ const DetailDairypage = () => {
     async function getDairy() {
       try {
         const { data } = await axios.get(
-          `http://localhost:5005/days?userId=${userID}&date=${dairyID}`
+          `${API_URL}/days?userId=${userID}&date=${dairyID}`
         );
 
-        const result = await axios.get(`http://localhost:5005/diary-prompts`);
+        const result = await axios.get(`${API_URL}/diary-prompts`);
         setDiaryPrompts(result.data);
 
         setsingleDairyState(data[0]);

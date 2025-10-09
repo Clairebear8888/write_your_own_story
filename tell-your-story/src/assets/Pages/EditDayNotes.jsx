@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { API_URL } from "../Components/config/config";
 
 function EditDayNotes() {
   const { userID, dairyID } = useParams();
@@ -23,10 +24,10 @@ function EditDayNotes() {
     async function getDairy() {
       try {
         const { data } = await axios.get(
-          `http://localhost:5005/days?userId=${userID}&date=${dairyID}`
+          `${API_URL}/days?userId=${userID}&date=${dairyID}`
         );
 
-        const result = await axios.get(`http://localhost:5005/diary-prompts`);
+        const result = await axios.get(`${API_URL}/diary-prompts`);
 
         setDay(data[0]);
         setDiaryPrompts(result.data);
@@ -94,12 +95,9 @@ function EditDayNotes() {
     ];
 
     try {
-      const { data } = await axios.patch(
-        `http://localhost:5005/days/${day.id}`,
-        {
-          notes: updatedNotes,
-        }
-      );
+      const { data } = await axios.patch(`${API_URL}/days/${day.id}`, {
+        notes: updatedNotes,
+      });
       navigate(`/profile/${day.userId}`);
     } catch (err) {
       console.log(err);

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { GoogleGenAI } from "@google/genai";
+import { API_URL } from "../Components/config/config";
 
 const ai = new GoogleGenAI({
   apiKey: import.meta.env.VITE_GEMINI_API_KEY,
@@ -26,7 +27,7 @@ const Questionpage = () => {
   useEffect(() => {
     async function getQuestions() {
       try {
-        const { data } = await axios.get("http://localhost:5005/diary-prompts");
+        const { data } = await axios.get(`${API_URL}/diary-prompts`);
         setQuestion(data);
         console.log(data);
       } catch (err) {
@@ -65,10 +66,7 @@ const Questionpage = () => {
     const dataToSubmit = formateData(AIresponce);
 
     try {
-      const { data } = await axios.post(
-        "http://localhost:5005/days",
-        dataToSubmit
-      );
+      const { data } = await axios.post(`${API_URL / days}`, dataToSubmit);
     } catch (err) {
       console.log(err);
     }

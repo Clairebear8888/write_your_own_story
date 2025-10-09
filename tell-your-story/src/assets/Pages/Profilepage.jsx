@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/Authcontext";
+import { API_URL } from "../Components/config/config";
 
 const Profilepage = () => {
   const { isLoggedIn, setisLoggedin, userName, setUserName } =
@@ -17,9 +18,7 @@ const Profilepage = () => {
   useEffect(() => {
     async function getAllDiary() {
       try {
-        const { data } = await axios(
-          `http://localhost:5005/days?userId=${userID}`
-        );
+        const { data } = await axios(`${API_URL}/days?userId=${userID}`);
         setDaysState(data);
       } catch (err) {
         console.log(err);
@@ -31,9 +30,7 @@ const Profilepage = () => {
   useEffect(() => {
     async function getUsername() {
       try {
-        const { data } = await axios.get(
-          `http://localhost:5005/users?id=${userID}`
-        );
+        const { data } = await axios.get(`${API_URL}/users?id=${userID}`);
         setuserState(data[0]);
       } catch (err) {
         console.log(err);
@@ -45,9 +42,7 @@ const Profilepage = () => {
   async function handleDeleteDay(dayToRemoveId) {
     console.log("deleting");
     try {
-      const { data } = await axios.delete(
-        `http://localhost:5005/days/${dayToRemoveId}`
-      );
+      const { data } = await axios.delete(`${API_URL}/days/${dayToRemoveId}`);
       setDaysState(daysState.filter((day) => day.id !== dayToRemoveId));
     } catch (error) {
       console.log(error);
