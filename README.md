@@ -47,14 +47,14 @@ Echo Diary doesn’t judge — it listens, reflects, and helps you find your emo
 
 ---
 
-## 🧩 ## ⚙️ Getting Started
+## ⚙️ Getting Started
 
-### 1. Clone the Repository
+Clone the Repository
 Set Up Environment Variables
 Create a .env file in /backend:
 OPENAI_API_KEY=your_api_key_here
 
-🧠 How It Works
+## 🧠 How It Works
 
 You write your daily entry by answering guided prompts (e.g., “How am I feeling today?”).
 
@@ -74,7 +74,7 @@ AI Reflection (Echo):
 
 “It sounds like you carried a lot of pressure today, yet you still found a way to care for yourself by taking that walk. That shows real self-awareness and balance. Small steps like these build lasting resilience.”
 
-🧭 Roadmap
+## 🧭 Roadmap
 
  Add mood tracking and data visualization
 
@@ -86,7 +86,7 @@ AI Reflection (Echo):
 
  Secure user authentication
 
-🤝 Contributing
+## 🤝 Contributing
 
 Contributions, ideas, and feedback are welcome!
 
@@ -98,7 +98,7 @@ Commit your changes
 
 Submit a pull request
 
-💖 Acknowledgments
+## 💖 Acknowledgments
 
 Built with love, reflection, and AI.
 Echo Diary exists to help people slow down, write freely, and feel seen.
