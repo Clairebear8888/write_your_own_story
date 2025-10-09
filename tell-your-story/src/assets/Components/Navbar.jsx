@@ -22,6 +22,7 @@ const Navbar = () => {
             className="logout-button"
             onClick={() => {
               setIsLoggedIn(false);
+              window.location.reload();
             }}
           >
             Logout
