@@ -492,3 +492,16 @@ footer {
   height: 5%;
   font-style: italic;
 }
+
+/************** Not Found Day Page ********************/
+.not-found-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.not-found-page img {
+  width: 30%;
+  border-radius: 10px;
+}

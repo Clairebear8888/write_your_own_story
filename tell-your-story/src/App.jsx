@@ -13,6 +13,7 @@ import Navbar from "./assets/Components/Navbar";
 import DetailDairypage from "./assets/Pages/DetailDairypage";
 import AdminPage from "./assets/Pages/AdminPage";
 import EditDayNotes from "./assets/Pages/EditDayNotes";
+import Notfoundpage from "./assets/Pages/Notfoundpage";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/login" element={<LogInPage />} />
         <Route path="/about-us" element={<AboutUsPage />} />
         <Route path="/profile/:userID/:dairyID" element={<DetailDairypage />} />
+        <Route path="*" element={<Notfoundpage />} />
         <Route
           path="/profile/:userID/:dairyID/edit"
           element={<EditDayNotes />}
