@@ -64,7 +64,7 @@ const Questionpage = () => {
   async function submitData(AIresponse) {
     const dataToSubmit = formateData(AIresponse);
     try {
-      const { data } = await axios.post(`${API_URL / days}`, dataToSubmit);
+      const { data } = await axios.post(`${API_URL}/ days`, dataToSubmit);
     } catch (err) {
       console.log(err);
     }
@@ -180,6 +180,49 @@ The user will give answers to these questions:
   }
 
   //*****************end of Ai+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+  useEffect(() => {
+    async function getVoice() {
+      try {
+        const data = {
+          text: response,
+          voiceId: "en-US-terrell",
+        };
+        axios
+          .post("https://api.murf.ai/v1/speech/generate", data, {
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+              "api-key": import.meta.env.MURF_API_KEY,
+            },
+          })
+          .then((response) => {
+            console.log(response.data.audioFile);
+          });
+      } catch (err) {
+        console.log;
+      }
+    }
+  }, []);
+
+  const data = {
+    text: response,
+    voiceId: "en-US-terrell",
+  };
+  axios
+    .post("https://api.murf.ai/v1/speech/generate", data, {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "api-key": import.meta.env.MURF_API_KEY,
+      },
+    })
+    .then((response) => {
+      console.log(response.data.audioFile);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+  //*****************text to voice+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
   return (
     <div className="question-page">
       <h2>Today is {currentDate}</h2>

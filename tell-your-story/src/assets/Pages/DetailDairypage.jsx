@@ -46,7 +46,7 @@ const DetailDairypage = () => {
       })}
       {singleDairyState.AIparagraph && (
         <div className="ai-responce-container">
-          <h3>✨ Dear Diary: ✨</h3>
+          <h3>✨Echo Diary: ✨</h3>
           <p>{singleDairyState.AIparagraph}</p>
         </div>
       )}
