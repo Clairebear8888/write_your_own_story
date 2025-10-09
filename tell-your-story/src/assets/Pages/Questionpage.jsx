@@ -246,7 +246,7 @@ The user will give answers to these questions:
 
         {response && (
           <div>
-            <h3>Dear Diary's response:</h3>
+            <h3>Your Echo Diary's response:</h3>
             <p>{response}</p>
           </div>
         )}
