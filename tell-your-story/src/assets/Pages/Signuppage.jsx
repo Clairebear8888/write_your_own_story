@@ -1,12 +1,15 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Context/Authcontext";
 
 const Signuppage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
+
+  const { setIsLoggedIn, setUserName, setUserId } = useContext(AuthContext);
 
   function handleCreateUser(e) {
     e.preventDefault();
@@ -23,6 +26,9 @@ const Signuppage = () => {
           "http://localhost:5005/users",
           newUser
         );
+        await setIsLoggedIn(true);
+        await setUserName(newUser.name);
+        await setUserId(data.id);
         if (newUser.isAdmin)
           navigate("/admin", { state: { loggedUserId: data.id } });
         else navigate(`/profile/${data.id}`);

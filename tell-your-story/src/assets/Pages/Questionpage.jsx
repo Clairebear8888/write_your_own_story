@@ -20,7 +20,6 @@ const Questionpage = () => {
 
   const { userID } = useParams();
   const nav = useNavigate();
-
   const [spinner, setSpinner] = useState(false);
 
   useEffect(() => {
@@ -42,7 +41,7 @@ const Questionpage = () => {
   };
 
   //Change the format of the date to submit
-  function formateData(AIresponce) {
+  function formateData(AIresponse) {
     const notes = Object.keys(answers).map((oneAnswer) => {
       return {
         diary_promptsId: question[oneAnswer].id,
@@ -54,15 +53,16 @@ const Questionpage = () => {
       date: currentDate,
       userId: parseInt(userID),
       notes: notes,
-      AIparagraph: AIresponce,
+      AIparagraph: AIresponse,
     };
     return finalData;
   }
 
   // Function to submit
 
-  async function submitData(AIresponce) {
-    const dataToSubmit = formateData(AIresponce);
+  async function submitData(AIresponse) {
+    //async function submitData() {
+    const dataToSubmit = formateData(AIresponse);
 
     try {
       const { data } = await axios.post(
@@ -84,9 +84,14 @@ const Questionpage = () => {
     alert("Well done for the day");
     console.log("All answers:", answers);
 
-    const AIresponce = await handleSubmit(); //AI
+    //const AIresponce = await handleSubmit(); //AI
+    await handleSubmit(); //AI
 
-    await submitData(AIresponce); //save data to DB
+    //await submitData(AIresponce); //save data to DB
+  };
+
+  const handleSaveTheDay = async (AIresponse) => {
+    await submitData(AIresponse); //save data to DB
   };
 
   function handleBacktoProfile() {
@@ -185,33 +190,46 @@ The user will give answers to these questions:
     <div className="question-page">
       <h2>Today is {currentDate}</h2>
       <div className="question-box">
-        <h2>Question {currentQuestionIndex + 1} </h2>
-        <h4>{question[currentQuestionIndex].title} </h4>
+        {!response && (
+          <>
+            <h2>Question {currentQuestionIndex + 1} </h2>
+            <h4>{question[currentQuestionIndex].title} </h4>
+            <textarea
+              rows="4"
+              cols="50"
+              type="text"
+              value={answers[currentQuestionIndex] || ""}
+              onChange={handleStoreAnswer}
+              placeholder="Type your answer"
+            ></textarea>
+            <br />
+            {spinner && <div>this is spinner loading </div>}
+          </>
+        )}
 
-        <textarea
-          rows="4"
-          cols="50"
-          type="text"
-          value={answers[currentQuestionIndex] || ""}
-          onChange={handleStoreAnswer}
-          placeholder="Type your answer"
-        ></textarea>
-        <br />
-
-        {spinner && <div>this is spinner loading </div>}
         {response && (
           <div>
-            <h3>Your Reflection:</h3>
+            <h3>Dear Diary's response:</h3>
             <p>{response}</p>
           </div>
         )}
-        {currentQuestionIndex === question.length - 1 ? (
-          <button className="prominent-btn" onClick={handlelastQuestion}>
-            Save
-          </button>
-        ) : (
+        {currentQuestionIndex < question.length - 1 ? ( //not the last question
           <button className="prominent-btn" onClick={handleNextQuestion}>
             Next Question →
+          </button>
+        ) : !response ? ( //the last question
+          <button className="prominent-btn" onClick={handlelastQuestion}>
+            Get response from Dear Diary
+          </button>
+        ) : (
+          //having Diary's response
+          <button
+            className="prominent-btn"
+            onClick={() => {
+              handleSaveTheDay(response);
+            }}
+          >
+            Save the day!
           </button>
         )}
         <button className="not-so-prominent-btn" onClick={handleBacktoProfile}>

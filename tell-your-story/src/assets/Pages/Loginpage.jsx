@@ -6,7 +6,7 @@ import { AuthContext } from "../../Context/Authcontext";
 import { useContext } from "react";
 
 const LogInPage = () => {
-  const { isLoggedIn, setIsLoggedIn, userName, setUserName } =
+  const { isLoggedIn, setIsLoggedIn, userName, setUserName, setUserId } =
     useContext(AuthContext);
 
   console.log(userName);
@@ -34,9 +34,10 @@ const LogInPage = () => {
           if (user.isAdmin)
             navigate("/admin", { state: { loggedUserId: user.id } });
           else {
-            navigate(`/profile/${user.id}`),
-              await setIsLoggedIn(true),
-              await setUserName(name);
+            navigate(`/profile/${user.id}`);
+            await setIsLoggedIn(true);
+            await setUserName(name);
+            await setUserId(user.id);
             console.log(name, isLoggedIn);
           }
         }

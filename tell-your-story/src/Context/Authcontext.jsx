@@ -5,6 +5,7 @@ const AuthContext = createContext();
 const AuthWrapper = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");
+  const [userId, setUserId] = useState(null);
 
   return (
     <AuthContext.Provider
@@ -13,6 +14,8 @@ const AuthWrapper = ({ children }) => {
         setIsLoggedIn,
         userName,
         setUserName,
+        userId,
+        setUserId,
       }}
     >
       {children}
