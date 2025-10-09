@@ -9,7 +9,7 @@ const Navbar = () => {
 
   console.log(isLoggedIn);
 
-  const nav = useNavigate;
+  const nav = useNavigate();
 
   return (
     <header>
@@ -25,7 +25,6 @@ const Navbar = () => {
             onClick={() => {
               setIsLoggedIn(false);
               nav("/");
-              window.location.reload();
             }}
           >
             Logout
