@@ -12,7 +12,7 @@ const Homepage = () => {
       <div className="header-image-container">
         <section>
           <h1>Echo Dairy </h1>
-          <h2>Journalling in the dairy that can talk back to you</h2>
+          <h2>An AI powered journal that listens and talks back to you</h2>
           <div className="btn-container">
             <Link to="/signup">
               <button id="sign-up-btn">Sign Up</button>
