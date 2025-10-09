@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import LogoImg from "../logo.png";
 import { AuthContext } from "../../Context/Authcontext";
 
@@ -8,6 +8,8 @@ const Navbar = () => {
     useContext(AuthContext);
 
   console.log(isLoggedIn);
+
+  const nav = useNavigate;
 
   return (
     <header>
@@ -22,6 +24,7 @@ const Navbar = () => {
             className="logout-button"
             onClick={() => {
               setIsLoggedIn(false);
+              nav("/");
               window.location.reload();
             }}
           >
