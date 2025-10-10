@@ -7,12 +7,12 @@ function AboutUsPage() {
       <h1>About Us Page</h1>
       <section className="about-app-content">
         <p>
-          What if your <span className="important">Dear dairy </span>can hear
+          What if your <span className="important">Dear diary </span>can hear
           you and talk back to you?
         </p>
 
         <p>
-          With <span className="important">Echo Dairy</span>, you can journal
+          With <span className="important">Echo diary</span>, you can journal
           each day to check in with your thoughts and listen what a kind voice
           echoing back to you.
         </p>

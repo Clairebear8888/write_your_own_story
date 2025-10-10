@@ -11,7 +11,7 @@ const Homepage = () => {
     <div>
       <div className="header-image-container">
         <section>
-          <h1>Echo Dairy </h1>
+          <h1>Echo Diary </h1>
           <h2>An AI powered journal that listens and talks back to you</h2>
           <div className="btn-container">
             <Link to="/signup">
